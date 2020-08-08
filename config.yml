@@ -1,0 +1,38 @@
+data:
+    trading_dates: data/dailydates.csv
+    monthly_trading_dates: data/dates.csv
+    stock_returns: data/dailyret.csv
+    stock_volumes: data/dailyvol.csv
+    stock_close_prices: data/dailyprc.csv
+    stock_monthly_capitalizations: data/mve.csv
+
+rolling_window:
+    break_type: month_end     # Rebalance only on month end
+    estimation_break_size: 60 # 5 years for estimation
+    holding_break_size: 1     # 1 month for holding
+    cut_off_rank: 450         # Top 450 dollar volume stocks
+
+    log:
+        path: log/rolling_window.log
+        threshold: !expr logger::TRACE
+
+backtest:
+    strategies:
+        - CP   # capitalization portfolio
+        - EWP  # equal weight portfolio
+        - MVP  # minimum variance portfolio
+        - IVP  # inverse volatility portfolio
+        - ERCP # equal risk contribution portfolio
+        - MDP  # maximum diversification portfolio
+    estimators:
+        - SCM  # sample covariance matrix
+        - OSCM # oracle sample covariance matrix
+        - RM94 # risk metrics 1994 (EWMA)
+        - RM06 # risk metrics 2006
+        - LS   # sample covariance matrix with linear shrinkage
+        - NLS  # sample covariance matrix with non-linear shrinkage
+        #- DCC  # dynamic conditional correlation
+
+    log:
+        path: log/backtesting_results.log
+        threshold: !expr logger::TRACE

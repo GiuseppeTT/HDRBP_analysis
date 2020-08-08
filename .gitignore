@@ -1,0 +1,15 @@
+# R non-code files
+.Rproj.user/
+.Rhistory
+.RData
+
+# drake
+.drake/
+
+# data (non-public)
+data/*
+!data/.keep
+
+# log
+log/*
+!log/.keep
