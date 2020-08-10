@@ -1,7 +1,8 @@
 .PHONY: \
     drake \
     background_drake \
-    clean
+    clean \
+	dependencies
 
 drake:
 	Rscript main.R
@@ -12,3 +13,7 @@ background_drake:
 
 clean:
 	Rscript -e "drake::clean(destroy = TRUE)"
+
+dependencies:
+	Rscript -e "install.packages('renv')"
+	Rscript -e "renv::restore()"
