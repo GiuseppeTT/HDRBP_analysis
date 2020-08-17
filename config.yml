@@ -36,3 +36,14 @@ backtest:
     log:
         path: log/backtesting_results.log
         threshold: !expr logger::TRACE
+
+result:
+    price_plot: result/figure/price.png
+    drawdown_plot: result/figure/drawdown.png
+    weight_lorenz_plot: result/figure/weight_lorenz_plot.png
+    risk_lorenz_plot: result/figure/risk_lorenz_plot.png
+    summary: result/table/summary.txt
+
+figure:
+    width: 12
+    height: 8

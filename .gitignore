@@ -13,3 +13,13 @@ data/*
 # log
 log/*
 !log/.keep
+
+# result
+result/*
+!result/.keep
+result/figure/*
+!result/figure/
+!result/figure/.keep
+result/table/*
+!result/table/
+!result/table/.keep

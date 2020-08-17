@@ -65,7 +65,45 @@ backtest_plan <- drake_plan(
     )
 )
 
+results_plan <- drake_plan(
+    price_plot = my_plot_price(
+        backtesting_results,
+        file_out(!!config$result$price_plot),
+        width = config$figure$width,
+        height = config$figure$height
+    ),
+    drawdown_plot = my_plot_drawdown(
+        backtesting_results,
+        file_out(!!config$result$drawdown_plot),
+        width = config$figure$width,
+        height = config$figure$height
+    ),
+    weight_lorenz_plot = my_plot_lorenz(
+        backtesting_results,
+        rebalance_weights,
+        file_out(!!config$result$weight_lorenz_plot),
+        width = config$figure$width,
+        height = config$figure$height
+    ),
+    risk_lorenz_plot = my_plot_lorenz(
+        backtesting_results,
+        rebalance_risk_contributions,
+        file_out(!!config$result$risk_lorenz_plot),
+        width = config$figure$width,
+        height = config$figure$height
+    ),
+
+    summary_results = my_summarise_results(
+        backtesting_results
+    ),
+    summary_results_table = my_write_kable(
+        summary_results,
+        file_out(!!config$result$summary)
+    )
+)
+
 main_plan <- bind_plans(
     data_plan,
     backtest_plan,
+    results_plan
 )
